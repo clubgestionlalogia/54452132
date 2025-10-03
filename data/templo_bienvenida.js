@@ -1,0 +1,1 @@
+document.write("Bienvenido al templo del perreo.<br><br>Selecciona el piso que deseas explorar en esta travesía visual.<br><br>En el primer piso, econtraras: energía colectiva, pista general, sin distinción, donde todos perrean con todos.<br><br>Y en el segundo piso, encontraras: exclusividad, palcos, zonas VIP y acceso reservado.<br><br>");

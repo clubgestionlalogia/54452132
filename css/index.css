@@ -1,0 +1,85 @@
+/*===============Fondo y tipografía general===============*/
+body {
+  margin: 0;
+  background-image: url('../img/iluminati_rojo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Arial', sans-serif';
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100 vh;
+  padding-top: 20 px;
+}
+
+/*===============Fondo encabezado===============*/
+header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  margin-top: 5px;
+}
+.logo-img {
+  max-width: 80vw;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(255, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+/*===============Opciones===============*/
+.recuadro {
+  width: 70%;
+  margin-top: 10px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
+  border-radius: 12px;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.button {
+  display: inline-block;
+  width: 95%;
+  min-width: 120px;
+  padding: 12px;
+  background-color: #111;
+  color: #fff;
+  border: 2px solid #e60000;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 4px 6px rgba(255, 0, 0, 0.2);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.button:hover {
+  background-color: #222;
+  border-color: #ff1a1a;
+}
+/*===============Pie de pagina===============*/
+.footer {
+  width: 100%;
+  margin-top: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #f2f2f2; /* ✅ Mejor contraste */
+  padding: 10px 0;
+  text-align: center;
+  font-size: 11px;
+  font-family: 'Arial', sans-serif;
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* ✅ Más visible */
+}
+.footer-content p {
+  margin: 1px 0;
+}

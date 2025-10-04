@@ -1,20 +1,23 @@
-/*===============Fondo y tipografía general===============*/
+/*=============== Reset global ===============*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/*=============== Fondo y tipografía general ===============*/
 body {
   margin: 0;
-  background-image: url('../img/iluminati_rojo.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  font-family: 'Arial', sans-serif';
-  color: #fff;
+  padding-top: 20px;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100 vh;
-  padding-top: 20 px;
+  font-family: 'Arial', sans-serif;
+  color: #fff;
+  line-height: 1.6;
+  background: url('../img/iluminati_rojo.jpg') center/cover no-repeat;
 }
 
-/*===============Fondo encabezado===============*/
+/*=============== Encabezado ===============*/
 header {
   width: 100%;
   display: flex;
@@ -30,56 +33,131 @@ header {
   box-shadow: 0 6px 12px rgba(255, 0, 0, 0.5);
   transition: transform 0.3s ease;
 }
+.logo-img:hover {
+  transform: scale(1.05);
+}
 
-/*===============Opciones===============*/
+/*=============== Recuadro de opciones ===============*/
 .recuadro {
-  width: 70%;
+  width: 90%;
+  max-width: 600px;
+  min-width: 280px;
   margin-top: 10px;
   padding: 20px;
   background-color: rgba(0, 0, 0, 0.4);
   box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
   border-radius: 12px;
-  color: #fff;
   text-align: center;
-  font-size: 14px;
+  font-size: 0.875rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
 }
-.button {
+
+/*=============== Botones ===============*/
+.button,
+.contacto-btn {
   display: inline-block;
-  width: 95%;
+  width: 100%;
   min-width: 120px;
-  padding: 12px;
+  max-width: 500px;
+  margin: 4px auto;
+  padding: 20px 30px;
   background-color: #111;
   color: #fff;
   border: 2px solid #e60000;
-  border-radius: 8px;
-  font-size: 16px;
+  border-radius: 10px;
+  font-size: 1.2rem;
   font-weight: bold;
   text-transform: uppercase;
   text-align: center;
   text-decoration: none;
-  box-shadow: 0 4px 6px rgba(255, 0, 0, 0.2);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  box-shadow: 0 6px 10px rgba(255, 0, 0, 0.3);
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
 }
-.button:hover {
+.button:hover,
+.contacto-btn:hover {
   background-color: #222;
   border-color: #ff1a1a;
+  transform: scale(1.03);
 }
-/*===============Pie de pagina===============*/
+
+/*=============== Banner QR y Contacto ===============*/
+.qr-banner {
+  position: fixed;
+  width: 90%;
+  height: 90%;
+  background-color: rgba(10, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.qr-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #111;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+  text-align: center;
+  max-width: 90vw;
+}
+.qr-img {
+  max-width: 80vw;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 12px rgba(255, 0, 0, 0.4);
+}
+.cerrar-btn {
+  background-color: #e60000;
+  color: #fff;
+  border: none;
+  padding: 16px 32px;
+  font-size: 1.25rem;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(255, 0, 0, 0.4);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.cerrar-btn:hover {
+  background-color: #ff1a1a;
+  transform: scale(1.05);
+}
+.hidden {
+  display: none;
+}
+
+/*=============== Pie de página ===============*/
 .footer {
   width: 100%;
   margin-top: 20px;
   background-color: rgba(0, 0, 0, 0.3);
-  color: #f2f2f2; /* ✅ Mejor contraste */
+  color: #f2f2f2;
   padding: 10px 0;
   text-align: center;
-  font-size: 11px;
+  font-size: 14px;
   font-family: 'Arial', sans-serif;
-  border-top: 1px solid rgba(255, 255, 255, 0.1); /* ✅ Más visible */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 .footer-content p {
   margin: 1px 0;
+}
+
+/*=============== Breakpoints ===============*/
+@media (min-width: 768px) {
+  .recuadro {
+    width: 70%;
+    max-width: 800px;
+  }
+  .button {
+    flex: 1 1 40%;
+    max-width: 45%;
+  }
 }

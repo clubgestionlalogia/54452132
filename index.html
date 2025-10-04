@@ -1,29 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portal - La Logia</title>
-  <link rel="icon" href="img/lalogia.ico" type="image/x-icon">
-  <link rel="stylesheet" href="css/index.css">
+  <link rel="icon" href="img/lalogia.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="css/index.css" />
 </head>
 <body>
   <header>
-    <img src="img/logo_iluminati.jpg" alt="Logo Iluminati" class="logo-img">
+    <img src="img/logo_iluminati.jpg" alt="Logo Iluminati" class="logo-img" />
   </header>
+
   <div class="recuadro">
-    <a href="templo/templo.html" class="button">Templo</a>
-    <a href="#ofrendas" class="button">Ofrendas</a>
-    <a href="#rituales" class="button">Rituales</a>
-    <a href="#momentos" class="button">Momentos</a>
-    <a href="#wifi" class="button" onclick="mostrarQR()">Vincularme al WiFi</a>
-    <a href="#opinion" class="button">Tu opinión</a>
-    <a href="#contacto" class="button">Contacto</a>
-    <a href="#inicio" class="button">Inicio</a>
+    <a id="btn-templo" class="button">Templo</a>
+    <a id="btn-ofrendas" class="button">Ofrendas</a>
+    <a id="btn-rituales" class="button">Rituales</a>
+    <a id="btn-momentos" class="button">Momentos</a>
+    <a id="btn-wifi" class="button">Vincularme al Wi-Fi</a>
+    <a id="btn-opinion" class="button">Tu opinión</a>
+    <a id="btn-contacto" class="button">Contacto</a>
+    <a id="btn-inicio" class="button">Inicio</a>
   </div>
-<footer class="footer">
-  <div class="footer-content">
-    <p id="texto-footer"><script src="data/footer.js"></script></p>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p id="texto-footer"></p>
+    </div>
+  </footer>
+
+  <!-- Banner QR -->
+  <div id="qr-banner" class="qr-banner hidden">
+    <div class="qr-content">
+      <h2 class="qr-titulo">VINCULARME</h2>
+      <img src="img/wifi.jpg" alt="Código QR WiFi" class="qr-img" />
+      <button id="cerrar-qr" class="cerrar-btn">Cerrar</button>
+    </div>
   </div>
-</footer>
+
+  <!-- Banner Contacto -->
+  <div id="contacto-banner" class="qr-banner hidden">
+    <div class="qr-content">
+      <h2 class="qr-titulo">CONTACTO</h2>
+      <a id="btn-whatsapp" target="_blank" class="contacto-btn">WhatsApp</a>
+      <a id="btn-instagram" target="_blank" class="contacto-btn">Instagram</a>
+      <a id="btn-facebook" target="_blank" class="contacto-btn">Facebook</a>
+      <a id="btn-pqrs" target="_blank" class="contacto-btn">Exprésate</a>
+      <button id="cerrar-contacto" class="cerrar-btn">Cerrar</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="data/footer.js" defer></script>
+  <script src="data/links.js" defer></script>
+  <script defer>
+    // Mostrar QR
+    document.getElementById("btn-wifi").addEventListener("click", () => {
+      document.getElementById("qr-banner").classList.remove("hidden");
+    });
+
+    // Cerrar QR
+    document.getElementById("cerrar-qr").addEventListener("click", () => {
+      document.getElementById("qr-banner").classList.add("hidden");
+    });
+
+    // Mostrar Contacto
+    document.getElementById("btn-contacto").addEventListener("click", () => {
+      document.getElementById("contacto-banner").classList.remove("hidden");
+    });
+
+    // Cerrar Contacto
+    document.getElementById("cerrar-contacto").addEventListener("click", () => {
+      document.getElementById("contacto-banner").classList.add("hidden");
+    });
+  </script>
 </body>
+</html>

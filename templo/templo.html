@@ -3,50 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Templo - La Logia</title>
+  <title>Templo – La Logia</title>
   <link rel="icon" href="../img/lalogia.ico" type="image/x-icon">
   <link rel="stylesheet" href="../css/templo.css">
 </head>
 <body>
-  <div id="visual-piso">
-    <iframe id="plano-frame" src="" style="display: none;"></iframe>
-  </div>
+  <!-- Fondo ceremonial detrás del banner -->
+  <div id="fondo-bienvenida" class="fondo-bienvenida"></div>
 
-  <div id="visual-bienvenida" class="bienvenida">
-    <p><script src="../data/templo_bienvenida.js"></script></p>
-  </div>
+  <!-- Banner flotante de bienvenida -->
+  <section id="banner-bienvenida" class="banner-bienvenida">
+    <div id="mensaje-bienvenida"></div>
+    <a href="#" id="cerrar-bienvenida" class="button">Cerrar</a>
+  </section>
 
-  <nav class="enlaces-piso">
-    <a href="../index.html" class="regresar">⮌</a>
-    <a href="#" class="button" onclick="mostrarVisual('primer')">Primer Piso</a>
-    <a href="#" class="button" onclick="mostrarVisual('segundo')">Segundo Piso</a>
-  </nav>
+  <main id="contenedor-templo">
+    <!-- Plano ritual -->
+    <section id="contenedor-plano" class="plano-frame" hidden>
+      <iframe id="plano-frame" title="Plano del templo" loading="lazy"></iframe>
+    </section>
 
-  <footer class="footer">
-    <div class="footer-content">
-      <p><script src="../data/footer.js"></script></p>
-    </div>
-  </footer>
+    <!-- Navegación entre pisos -->
+    <nav class="enlaces-piso" aria-label="Navegación de pisos">
+      <a href="../index.html" class="regresar">Regresar</a>
+      <a href="#" class="button" data-piso="primer">1er Piso</a>
+      <a href="#" class="button" data-piso="segundo">2do Piso</a>
+    </nav>
 
+    <!-- Pie de página -->
+    <footer class="footer">
+      <div class="footer-content">
+        <p id="texto-footer"></p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Scripts -->
+  <script src="../data/footer.js" defer></script>
+  <script src="../data/templo_bienvenida.js" defer></script>
   <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const mensaje = document.getElementById("mensaje-bienvenida");
+      const cerrarBtn = document.getElementById("cerrar-bienvenida");
+      const fondo = document.getElementById("fondo-bienvenida");
+      const banner = document.getElementById("banner-bienvenida");
+
+      // Activar mensaje ceremonial
+      mensaje.innerHTML = typeof generarBienvenida === "function"
+        ? generarBienvenida()
+        : "Bienvenido al Templo de La Logia.";
+
+      // Mostrar banner y fondo con transición
+      banner.style.display = "flex";
+      fondo.style.display = "block";
+      requestAnimationFrame(() => banner.style.opacity = "1");
+
+      // Cierre ritual
+      cerrarBtn.addEventListener("click", () => {
+        banner.style.opacity = "0";
+        fondo.style.display = "none";
+        setTimeout(() => banner.style.display = "none", 400);
+      });
+
+      // Activar visualización de piso desde enlaces
+      document.querySelectorAll(".button[data-piso]").forEach(enlace => {
+        enlace.addEventListener("click", e => {
+          e.preventDefault();
+          mostrarVisual(enlace.dataset.piso);
+        });
+      });
+    });
+
     function mostrarVisual(piso) {
+      const contenedor = document.getElementById("contenedor-plano");
       const iframe = document.getElementById("plano-frame");
 
-      if (piso === "primer") {
-        iframe.src = "primerpiso.html";
-        iframe.style.display = "block";
-      } else if (piso === "segundo") {
-        iframe.src = "segundopiso.html";
-        iframe.style.display = "block";
+      const rutas = {
+        primer: "primerpiso.html",
+        segundo: "segundopiso.html"
+      };
+
+      if (rutas[piso]) {
+        contenedor.style.opacity = "0";
+        contenedor.hidden = false;
+        requestAnimationFrame(() => {
+          contenedor.style.opacity = "1";
+        });
+        iframe.src = rutas[piso];
       } else {
+        contenedor.hidden = true;
         iframe.src = "";
-        iframe.style.display = "none";
       }
+
     }
-    window.addEventListener("message", function(event) {
+
+    window.addEventListener("message", event => {
       if (event.data.type === "setHeight") {
-        const iframe = document.getElementById("plano-frame");
-        iframe.style.height = event.data.height + "px";
+        document.getElementById("plano-frame").style.height = `${event.data.height}px`;
       }
     });
   </script>
